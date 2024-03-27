@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box } from "@mui/material";
+import React from "react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
+import { useMediaQuery } from "@mui/material";
 
-function App() {
+const App = () => {
+  const isMobileScreens = useMediaQuery("(max-width: 372px)");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box display="flex" bgcolor={isMobileScreens? "white":"#F2F4F7"}>
+      {!isMobileScreens && (
+        <Box width="232px" height="1024px">
+          <Sidebar />
+        </Box>
+      )}
+
+      <Box flexGrow={1}>
+        <Dashboard />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;
